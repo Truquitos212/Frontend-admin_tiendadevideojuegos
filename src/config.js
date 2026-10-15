@@ -1,11 +1,12 @@
+// Configuracion de Cognito (pool de PERSONAL) leida desde el archivo .env
 export const awsConfig = {
   Auth: {
     Cognito: {
-      userPoolId: import.meta.env.VITE_AWS_USER_POOL_ID || 'us-east-1_mock',
-      userPoolClientId: import.meta.env.VITE_AWS_USER_POOL_CLIENT_ID || 'mockclient',
-      signUpVerificationMethod: 'code',
-    }
-  }
+      userPoolId: import.meta.env.VITE_COGNITO_USER_POOL_ID,
+      userPoolClientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
+      loginWith: { email: true },
+    },
+  },
 };
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
