@@ -1,16 +1,38 @@
-# React + Vite
+# 🛠️ GamingStore: Panel de administración
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Panel para el **personal** de GamingStore. Permite gestionar el catálogo de videojuegos (crear, editar y eliminar). El acceso está protegido con un user pool de **Amazon Cognito** separado del de clientes.
 
-Currently, two official plugins are available:
+Proyecto de la asignatura **Desarrollo Cloud Native I (DSY1107)**, DuocUC.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React + Vite
+- AWS Amplify (Auth) + `@aws-amplify/ui-react`
+- Amazon Cognito (user pool de personal)
+- API REST en Spring Boot detrás de API Gateway con authorizer JWT
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- Login del personal con Cognito
+- CRUD de videojuegos:
+  - `GET /api/videojuegos`
+  - `POST /api/videojuegos`
+  - `PUT /api/videojuegos/{id}`
+  - `DELETE /api/videojuegos/{id}`
+- Cada request lleva el token JWT de la sesión
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Repo relacionado: [frontend de la tienda](https://github.com/Truquitos212/Claud_Nativo1_Front_End_GamingStore)
+
+## Cómo correrlo
+
+```bash
+npm install
+cp .env.example .env   # completar con los datos del user pool de personal y la API
+npm run dev
+```
+
+| Variable | Descripción |
+|---|---|
+| `VITE_COGNITO_USER_POOL_ID` | ID del user pool de personal |
+| `VITE_COGNITO_CLIENT_ID` | ID del app client |
+| `VITE_API_URL` | URL base de la API |
